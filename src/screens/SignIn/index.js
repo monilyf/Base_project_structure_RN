@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import styles from './style';
 import OrSection from '../../component/OrSection'
 import InputContainer from '../../component/InputContainer';
-
+import COLOR from '../../utils/Color'
 import SubmitButton from '../../component/SubmitButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -24,7 +24,7 @@ export class SignIn extends Component {
     }
     login_data = 'login';
     AsyncStorage.setItem('login_data', JSON.stringify(login_data));
-    alert('login  Successfully!', login_data);
+    // alert('login  Successfully!', login_data);
     console.log('login_data from :', login_data);
 
     this.props.navigation.navigate('Auth', {email: this.state.email});
@@ -35,7 +35,7 @@ export class SignIn extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <LinearGradient
-          colors={['#ff7900', '#ffb636']}
+          colors={[COLOR.PALE_VIOLET, COLOR.LIGHT_ORANGE]}
           start={{x: 0, y: 1}}
           end={{x: 1, y: 0}}
           style={styles.linearGradient}>

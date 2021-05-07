@@ -1,5 +1,6 @@
 // import React from 'react'
 import {View, Text, StyleSheet} from 'react-native';
+import COLOR from './Color'
 
 const styles = StyleSheet.create({
   logo: {
@@ -9,7 +10,7 @@ const styles = StyleSheet.create({
  
  
   errorMsg: {
-    color: 'red',
+    color: COLOR.ERROR,
     fontStyle: 'italic',
     marginLeft: 23,
   },

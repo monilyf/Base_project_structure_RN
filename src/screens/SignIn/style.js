@@ -1,12 +1,12 @@
 import {StyleSheet} from 'react-native';
-
+import COLOR from '../../utils/Color'
 const styles = StyleSheet.create({
 
     container:{
         flex: 1,  
         justifyContent: 'center',  
         alignItems: 'center',  
-        backgroundColor: '#F5FCFF',  
+        // backgroundColor: '#F5FCFF',  
     },
     linearGradient: {
         width: '100%',
@@ -17,10 +17,10 @@ const styles = StyleSheet.create({
       },
       loginContainer:{
           height:450,
-          width:'100%',
+          width:'100%', 
           paddingHorizontal:20,
           paddingVertical:20,
-          backgroundColor:'#fff',
+          backgroundColor:COLOR.WHITE,
           borderRadius:12
       },
       welcomeText:{
@@ -28,18 +28,18 @@ const styles = StyleSheet.create({
       },
       infoText:{
           fontSize:14,
-          color:'#a5a5a5',
+          color:COLOR.DARK_GRAY,
           marginBottom:12
       },
       btnName: {
         fontWeight: 'bold',
         fontSize: 16,
-        color:'#fff',
+        color:COLOR.WHITE,
          paddingRight:50
       },
       btnPrimary: {
         flexDirection:'row',
-        backgroundColor: '#325f95',
+        backgroundColor: COLOR.DARK_MODERATE_BLUE,
         height: 50,
         width:325,
         borderRadius: 14,
