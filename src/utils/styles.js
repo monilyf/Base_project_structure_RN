@@ -6,21 +6,8 @@ const styles = StyleSheet.create({
     height: 110,
     width: '80%',
   },
-  signContainer: {
-    flex: 1,
-    paddingHorizontal: 30,
-    flexDirection: 'column',
-    // alignItems: 'center',
-    // marginVertical:10,
-    // backgroundColor:'red'
-  },
-  bgImg: {
-    flex: 1,
-    width: '100%',
-    // height:800,
-    resizeMode: 'cover', //        <ImageBackground source={require('../assets/images/signupBG.jpg')} style={styles.bgImg}>
-  },
-
+ 
+ 
   errorMsg: {
     color: 'red',
     fontStyle: 'italic',

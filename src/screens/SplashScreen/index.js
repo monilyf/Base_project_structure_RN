@@ -51,18 +51,18 @@ class SplashScreen extends Component  {
     if (value) {
         setTimeout(() => {
             this.props.navigation.dispatch(this.resetToAuth);
-        }, 2000);
+        }, 3000);
     } else {
         setTimeout(() => {
             this.props.navigation.dispatch(this.resetToNotAuth);
-        }, 2000);
+        }, 3000);
     }
 }
 render(){
     return (
       <View style={styles.SplashScreen_RootView}>
        
-         <Image source={require('../../assets/images/foodoorer.png')} style={styles.logo}/>
+         <Image source={require('../../assets/images/food_loader.gif')} style={styles.logo}/>
          
          {/* <View style={styles.SplashScreen_ChildView}>
           <Image source={require('../assests/images/splashScreen1.gif')}

@@ -1,75 +1,59 @@
 import React, {Component} from 'react';
-import {
-  ImageBackground,
-  KeyboardAvoidingView,
-  SafeAreaView,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  TextInput,
-  View,
-} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
-
-import styles from '../../utils/styles';
-import Routes from '../../router/routes'
+import {KeyboardAvoidingView, SafeAreaView, Text, View,TouchableOpacity,Image} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import styles from './style';
+import OrSection from '../../component/OrSection'
 import InputContainer from '../../component/InputContainer';
-// import Picker from 'react-native-country-picker-modal';
+
 import SubmitButton from '../../component/SubmitButton';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export class SignIn extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       email: '',
-      password: '',
-      toggleIcon: 'eye',
-      isSecurePassword: true,
     };
   }
   check_IsNull = () => {
-    const {email, password} = this.state;
+    const {email} = this.state;
     if (email == '') {
       alert('please fill email ');
       return false;
-    } else if (password == '') {
-      alert('please fill password');
-      return false;
     }
-    this.props.navigation.navigate("Auth", {
-      email: this.state.email,
-      password: this.state.password,
-    });
+    login_data = 'login';
+    AsyncStorage.setItem('login_data', JSON.stringify(login_data));
+    alert('login  Successfully!', login_data);
+    console.log('login_data from :', login_data);
+
+    this.props.navigation.navigate('Auth', {email: this.state.email});
     return true;
   };
 
-  handleToggle = () => {
-    this.state.isSecurePassword
-      ? this.setState({isSecurePassword: false, toggleIcon: 'eye-closed'})
-      : this.setState({isSecurePassword: true, toggleIcon: 'eye'});
-  };
   render(props) {
     return (
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <SafeAreaView>
+      <SafeAreaView style={styles.container}>
+        <LinearGradient
+          colors={['#ff7900', '#ffb636']}
+          start={{x: 0, y: 1}}
+          end={{x: 1, y: 0}}
+          style={styles.linearGradient}>
           <KeyboardAvoidingView
             behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
             keyboardVerticalOffset={Platform.OS == 'ios' ? 0 : 40}
-            enabled={Platform.OS === 'ios' ? true : false}
-            style={{flex: 1}}>
-            {/* <ImageBackground
-              source={require('../../assets/images/bg1.png')}
-              style={(styles.bgImg, {height: 800})}> */}
-              <View style={{flex:1,marginTop:80}}> 
-              {/* <Header/> */}
-              <Text style={{fontSize: 32, textAlign: 'center',marginTop:10,marginBottom:30}}> Login </Text>
+            enabled={Platform.OS === 'ios' ? true : false}>
+            <View>
+              <View style={styles.loginContainer}>
+                <Text style={styles.welcomeText}>Welcome</Text>
+                <Text style={styles.infoText}>
+                  Enter your email id to proceed
+                </Text>
 
-              <View
-                style={[styles.signContainer]}>
                 <InputContainer
                   iconName="email"
                   placeholder="Enter Email"
-                  onChangeText={(text) => this.setState({email: text})}
+                  onChangeText={text => this.setState({email: text})}
                 />
                 {this.state.isEmailvalidate ? (
                   <Text style={(styles.errorMsg, {color: 'green'})}>
@@ -78,45 +62,30 @@ export class SignIn extends Component {
                 ) : (
                   <Text style={styles.errorMsg}>{this.state.emailError}</Text>
                 )}
-                <InputContainer
-                  iconName="lock"
-                  secureText={this.state.isSecurePassword}
-                  placeholder="Enter Password"
-                  extraIconName={this.state.toggleIcon}
-                  onChangeText={(text) => this.setState({password: text})}
-                  onToggle={() => this.handleToggle()}
-                />
-                {this.state.isPasswordvalidate ? (
-                  <Text style={(styles.errorMsg, {color: 'green'})}>
-                    {this.state.passwordError}
-                  </Text>
-                ) : (
-                  <Text style={styles.errorMsg}>
-                    {this.state.passwordError}
-                  </Text>
-                )}
+
                 <SubmitButton
                   onPress={() => {
                     this.check_IsNull();
                   }}
                   buttonText="Login"
                 />
-
-                <View style={styles.footer}>
-                  <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate(Routes.SignUp)}>
-                    <Text style={styles.footerText}>
-                      Haven't Registered Yet!{' '}
-                      <Text style={{fontWeight: 'bold'}}>SignUp</Text>
-                    </Text>
+                <OrSection/>
+             
+                  <TouchableOpacity style={styles.btnPrimary}>
+                    <Image style={styles.btnImage} source={require('../../assets/images/facebook.png')}/>
+                    <Text style={styles.btnName}>Sign In with FaceBook</Text>
                   </TouchableOpacity>
-                </View>
+                  <View style={{margin:5}}></View>
+                  <TouchableOpacity style={styles.btnPrimary}>
+                    <Image style={styles.btnImage} source={require('../../assets/images/google.png')}/>
+                    <Text style={styles.btnName}>Sign In with Google</Text>
+                  </TouchableOpacity>
+              
               </View>
-              </View>
-            {/* </ImageBackground> */}
+            </View>
           </KeyboardAvoidingView>
-        </SafeAreaView>
-      </ScrollView>
+        </LinearGradient>
+      </SafeAreaView>
     );
   }
 }

@@ -5,9 +5,9 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       marginTop: 10,
       borderColor: '#FFF',
-      borderWidth: 0.5,
+      // borderWidth: 0.5,
       borderRadius: 14,
-  
+     borderBottomWidth:1,
       backgroundColor: '#fff',
     },
     input: {

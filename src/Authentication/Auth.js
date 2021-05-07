@@ -9,20 +9,16 @@ export class Auth extends Component {
     super(props);
     this.state = {
       email: '',
-      password: '',
-      // error:
-      // isAuthenticated:false
+   
     };
   }
 
   componentDidMount() {
-    const {email, password} = this.props.route.params;
-    this.setState({email: email, password: password});
+    const {email} = this.props.route.params;
+    this.setState({email: email});
 
-    // var login_data={email:'mansip@gmail.com',password:'mansip123'};
-    // AsyncStorage.setItem('user',JSON.stringify(login_data))
 
-    // this.setAuthentication();
+
     this.checkAuthentication();
   }
 
@@ -37,13 +33,10 @@ export class Auth extends Component {
 
   checkAuthentication = async () => {
     try {
-      let user = await AsyncStorage.getItem('registered_data');
+      let user = await AsyncStorage.getItem('login_data');
       let parsed = JSON.parse(user);
 
-      if (
-        parsed.email === this.state.email &&
-        parsed.password === this.state.password
-      )
+      if (user!=null)
         // this.state.isAuthenticated=true;
         this.props.navigation.dispatch(this.resetToAuth);
       else {
@@ -59,7 +52,7 @@ export class Auth extends Component {
   };
 
   render() {
-    console.log('email render', this.state.email, '---', this.state.password);
+    console.log('email render', this.state.email, '---');
 
     return (
       <View
